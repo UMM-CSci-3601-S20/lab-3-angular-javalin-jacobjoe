@@ -125,12 +125,12 @@ public class TodoDatabase {
   }
 
   /**
-   * Get an array of all the todos having the target body.
+   * Get an array of all the todos having the target owner.
    *
-   * @param todos       the list of todos to filter by body
-   * @param targetBody  the target body to look for
+   * @param todos       the list of todos to filter by owner
+   * @param targetOwner  the target owner to look for
    * @return an array of all the todos from the given list that have the target
-   *         body
+   *         owner
    */
   public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
     return Arrays.stream(todos).filter(x -> x.owner.toLowerCase().equals(targetOwner.toLowerCase())).toArray(Todo[]::new);
