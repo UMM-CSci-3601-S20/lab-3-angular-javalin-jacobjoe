@@ -24,8 +24,10 @@ public class TodoDatabase {
 
   public TodoDatabase(String todoDataFile) throws IOException {
     Gson gson = new Gson();
-    InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream(todoDataFile));
-    allTodos = gson.fromJson(reader, Todo[].class);
+    try (InputStreamReader reader =
+        new InputStreamReader(getClass().getResourceAsStream(todoDataFile))) {
+      allTodos = gson.fromJson(reader, Todo[].class);
+    }
   }
 
   public int size() {

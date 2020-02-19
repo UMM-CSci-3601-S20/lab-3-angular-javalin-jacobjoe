@@ -24,8 +24,10 @@ public class UserDatabase {
 
   public UserDatabase(String userDataFile) throws IOException {
     Gson gson = new Gson();
-    InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream(userDataFile));
-    allUsers = gson.fromJson(reader, User[].class);
+    try (InputStreamReader reader =
+        new InputStreamReader(getClass().getResourceAsStream(userDataFile))) {
+      allUsers = gson.fromJson(reader, User[].class);
+    }
   }
 
   public int size() {
