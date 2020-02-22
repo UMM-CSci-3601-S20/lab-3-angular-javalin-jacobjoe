@@ -6,7 +6,7 @@ import { Todo } from './todo';
 
 @Injectable()
 export class TodoService {
-  readonly userUrl: string = environment.API_URL + 'todos';
+  readonly todoUrl: string = environment.API_URL + 'todos';
 
   constructor(private httpClient: HttpClient) {
   }
