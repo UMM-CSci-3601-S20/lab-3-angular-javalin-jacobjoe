@@ -29,7 +29,6 @@ describe('Todo service: ', () => {
 
   describe('getTodos: ',  () => {
     it('calls api/todos', () => {
-      // TODO
       todoService.getTodos().subscribe(
         todos => expect(todos).toBe(testTodos)
       );
@@ -39,7 +38,7 @@ describe('Todo service: ', () => {
     });
 
     it('calls api/users with filter parameter "category"', () => {
-      todoService.getTodos({ category: 'chores'}).subscribe(
+      todoService.getTodos({ category: 'chores' }).subscribe(
         todos => expect(todos).toBe(testTodos)
       );
       const req = httpTestingController.expectOne(
@@ -51,8 +50,9 @@ describe('Todo service: ', () => {
 
       req.flush(testTodos);
     });
+
     it('calls api/users with filter parameter "body"', () => {
-      todoService.getTodos({ body: 'this is a substring of the body text'}).subscribe(
+      todoService.getTodos({ body: 'this is a substring of the body text' }).subscribe(
         todos => expect(todos).toBe(testTodos)
       );
       const req = httpTestingController.expectOne(
@@ -64,8 +64,9 @@ describe('Todo service: ', () => {
 
       req.flush(testTodos);
     });
+
     it('calls api/users with filter parameter "owner"', () => {
-      todoService.getTodos({ owner: 'Blanche'}).subscribe(
+      todoService.getTodos({ owner: 'Blanche' }).subscribe(
         todos => expect(todos).toBe(testTodos)
       );
       const req = httpTestingController.expectOne(
@@ -77,8 +78,9 @@ describe('Todo service: ', () => {
 
       req.flush(testTodos);
     });
+
     it('calls api/users with filter parameter "status"', () => {
-      todoService.getTodos({ status: 'complete'}).subscribe(
+      todoService.getTodos({ status: 'complete' }).subscribe(
         todos => expect(todos).toBe(testTodos)
       );
       const req = httpTestingController.expectOne(
@@ -90,13 +92,14 @@ describe('Todo service: ', () => {
 
       req.flush(testTodos);
     });
+
     it('calls api/users with multiple filter parameters', () => {
-      todoService.getTodos({ category: 'chores', status: 'complete',owner: 'George III'}).subscribe(
+      todoService.getTodos({ category: 'chores', status: 'complete', owner: 'George III' }).subscribe(
         todos => expect(todos).toBe(testTodos)
       );
       const req = httpTestingController.expectOne(
         request => request.url.startsWith(todoService.todoUrl) && request.params.has('category') &&
-        request.params.has('owner') && request.params.has('category')
+          request.params.has('owner') && request.params.has('category')
       );
 
       expect(req.request.method).toEqual('GET');
