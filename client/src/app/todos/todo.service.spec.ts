@@ -30,6 +30,27 @@ describe('Todo service: ', () => {
   describe('getTodos: ',  () => {
     it('calls api/todos', () => {
       // TODO
+      todoService.getTodos().subscribe(
+        todos => expect(todos).toBe(testTodos)
+      );
+      const req = httpTestingController.expectOne(todoService.todoUrl);
+      expect(req.request.method).toEqual('GET');
+      req.flush(testTodos);
+    });
+
+    it('calls api/users with filter parameter "category"', () => {
+      todoService.getTodos({ category: 'chores'}).subscribe(
+        todos => expect(todos).toBe(testTodos)
+      );
+      const req = httpTestingController.expectOne(
+        request => request.url.startsWith(todoService.todoUrl) && request.params.has('category')
+      );
+
+      expect(req.request.method).toEqual('GET');
+      expect(req.request.params.get('category')).toEqual('chores');
+
+      req.flush(testTodos);
     });
   });
+
 });
