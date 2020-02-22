@@ -51,6 +51,19 @@ describe('Todo service: ', () => {
 
       req.flush(testTodos);
     });
+    it('calls api/users with filter parameter "body"', () => {
+      todoService.getTodos({ body: 'this is a substring of the body text'}).subscribe(
+        todos => expect(todos).toBe(testTodos)
+      );
+      const req = httpTestingController.expectOne(
+        request => request.url.startsWith(todoService.todoUrl) && request.params.has('body')
+      );
+
+      expect(req.request.method).toEqual('GET');
+      expect(req.request.params.get('body')).toEqual('this is a substring of the body text');
+
+      req.flush(testTodos);
+    });
   });
 
 });
