@@ -28,7 +28,7 @@ describe('Todo service: ', () => {
   });
 
   describe('getTodos: ',  () => {
-    it('calls api/todos', () => {\
+    it('calls api/todos', () => {
       // TODO
     });
   });
