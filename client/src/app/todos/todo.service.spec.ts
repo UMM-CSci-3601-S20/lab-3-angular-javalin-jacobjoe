@@ -90,5 +90,21 @@ describe('Todo service: ', () => {
 
       req.flush(testTodos);
     });
+    it('calls api/users with multiple filter parameters', () => {
+      todoService.getTodos({ category: 'chores', status: 'complete',owner: 'George III'}).subscribe(
+        todos => expect(todos).toBe(testTodos)
+      );
+      const req = httpTestingController.expectOne(
+        request => request.url.startsWith(todoService.todoUrl) && request.params.has('category') &&
+        request.params.has('owner') && request.params.has('category')
+      );
+
+      expect(req.request.method).toEqual('GET');
+      expect(req.request.params.get('category')).toEqual('chores');
+      expect(req.request.params.get('owner')).toEqual('George III');
+      expect(req.request.params.get('status')).toEqual('complete');
+
+      req.flush(testTodos);
+    });
   });
 });
