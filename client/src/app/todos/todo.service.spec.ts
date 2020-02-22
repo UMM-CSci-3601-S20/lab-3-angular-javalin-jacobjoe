@@ -64,6 +64,19 @@ describe('Todo service: ', () => {
 
       req.flush(testTodos);
     });
+    it('calls api/users with filter parameter "owner"', () => {
+      todoService.getTodos({ owner: 'Blanche'}).subscribe(
+        todos => expect(todos).toBe(testTodos)
+      );
+      const req = httpTestingController.expectOne(
+        request => request.url.startsWith(todoService.todoUrl) && request.params.has('owner')
+      );
+
+      expect(req.request.method).toEqual('GET');
+      expect(req.request.params.get('owner')).toEqual('Blanche');
+
+      req.flush(testTodos);
+    });
   });
 
 });
