@@ -26,4 +26,10 @@ describe('Todo service: ', () => {
     // After every test, assert that there are no more pending requests.
     httpTestingController.verify();
   });
+
+  describe('getTodos: ',  () => {
+    it('calls api/todos', () => {\
+      // TODO
+    });
+  });
 });
