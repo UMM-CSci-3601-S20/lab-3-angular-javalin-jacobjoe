@@ -110,4 +110,12 @@ describe('Todo service: ', () => {
       req.flush(testTodos);
     });
   });
+
+  describe('filterTodos: ', () => {
+    it('filters by owner', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { owner: 'Billy'});
+      expect(filteredTodos.length).toBe(2);
+    });
+  });
 });
