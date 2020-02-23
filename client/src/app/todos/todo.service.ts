@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Todo } from './todo';
-import { fileURLToPath } from 'url';
 
 @Injectable()
 export class TodoService {
