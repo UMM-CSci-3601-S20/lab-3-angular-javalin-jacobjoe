@@ -25,7 +25,7 @@ export class TodoListComponent implements OnInit {
   public todoOwner: string;
   public todoCategory: string;
   public todoBody: string;
-  public todoStatus: string;
+  public todoStatus: 'complete' | 'incomplete';
 
   updateFilter(): void {
     this.filteredTodos = this.todoService.filterTodos(
