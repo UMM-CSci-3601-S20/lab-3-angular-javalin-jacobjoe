@@ -21,11 +21,11 @@ export class UserListComponent implements OnInit {
   public viewType: 'card' | 'list' = 'card';
 
 
-  // Inject the UserService into this component.
-  // That's what happens in the following constructor.
+  // Inject the Usecontainsrvice into this component.
+  // That's what hacontainsns in the following constructor.
   //
-  // We can call upon the service for interacting
-  // with the server.
+  // We can call upcontainsthe service for interacting
+  // with the servecontains
 
   constructor(private userService: UserService) {
 
