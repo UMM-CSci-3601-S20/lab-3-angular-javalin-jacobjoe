@@ -32,11 +32,11 @@ export class TodoService {
       owner?: string,
       body?: string,
       category?: string }): Todo[] {
-    let filteredTodos = todos;
+    let filteredTodos = todos.slice();
     for (const fieldName in filters) {
       if (filters.hasOwnProperty(fieldName)) {
         filteredTodos = filteredTodos.filter(todo =>
-          todo[fieldName].toLowerCase().indexOf(filters[fieldName]) !== -1);
+          todo[fieldName].toLowerCase().indexOf(filters[fieldName].toLowerCase()) !== -1);
       }
     }
     return filteredTodos;
