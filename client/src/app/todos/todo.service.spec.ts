@@ -99,7 +99,7 @@ describe('Todo service: ', () => {
       );
       const req = httpTestingController.expectOne(
         request => request.url.startsWith(todoService.todoUrl) && request.params.has('category') &&
-          request.params.has('owner') && request.params.has('category')
+          request.params.has('owner') && request.params.has('status')
       );
 
       expect(req.request.method).toEqual('GET');
