@@ -36,7 +36,7 @@ export class TodoService {
     for (const fieldName in filters) {
       if (filters.hasOwnProperty(fieldName)) {
         filteredTodos = filteredTodos.filter(todo =>
-          todo[fieldName].indexOf(filters[fieldName]) !== -1);
+          todo[fieldName].toLowerCase().indexOf(filters[fieldName]) !== -1);
       }
     }
     return filteredTodos;
