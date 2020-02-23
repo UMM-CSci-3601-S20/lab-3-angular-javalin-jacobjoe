@@ -11,8 +11,8 @@ import { Todo } from './todo';
 })
 
 export class TodoListComponent implements OnInit {
-  public serverFilteredUsers: Todo[];
-  public filteredUsers: Todo[];
+  public serverFilteredTodos: Todo[];
+  public filteredTodos: Todo[];
 
   constructor(private todoService: TodoService) {
 
@@ -43,8 +43,8 @@ export class TodoListComponent implements OnInit {
   getTodosFromServer(): void {
     this.todoService.getTodos({
       status: this.todoStatus,
-    }).subscribe(returnedUsers => {
-      this.serverFilteredUsers = returnedUsers;
+    }).subscribe(returnedTodos => {
+      this.serverFilteredTodos = returnedTodos;
       this.updateFilter();
     }, err => {
       console.log(err);
