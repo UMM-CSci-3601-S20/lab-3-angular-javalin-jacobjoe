@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from './todo.service';
+import { Todo } from './todo';
 
 
 @Component({
@@ -10,8 +11,8 @@ import { TodoService } from './todo.service';
 })
 
 export class TodoListComponent implements OnInit {
-  public serverFilteredUsers: User[];
-  public filteredUsers: User[];
+  public serverFilteredUsers: Todo[];
+  public filteredUsers: Todo[];
 
   constructor(private todoService: TodoService) {
 
