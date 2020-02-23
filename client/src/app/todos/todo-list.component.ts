@@ -9,5 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class TodoListComponent implements OnInit {
+  public todoOwner: string;
+  public todoCategory: string;
+
   ngOnInit(): void {}
+
+  updateFilter(): void {
+    // TODO
+  }
 }
