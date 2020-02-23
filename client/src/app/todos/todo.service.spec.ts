@@ -110,7 +110,7 @@ describe('Todo service: ', () => {
       req.flush(testTodos);
     });
 
-    it('ignores parameters whose value is undefined', () => {
+    it('ignores parameters whose values are undefined', () => {
       todoService.getTodos({ category: 'chores', status: undefined, owner: undefined }).subscribe(
         todos => expect(todos).toBe(testTodos)
       );
