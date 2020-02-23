@@ -13,6 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -26,6 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { TodoListComponent } from './todos/todo-list.component';
+import { TodoTableComponent } from './todos/todo-table.component';
 import { TodoService } from './todos/todo.service';
 import { UserCardComponent } from './users/user-card.component';
 import { UserListComponent } from './users/user-list.component';
@@ -47,7 +50,8 @@ const MATERIAL_MODULES: any[] = [
   MatOptionModule,
   MatFormFieldModule,
   MatDividerModule,
-  MatRadioModule
+  MatRadioModule,
+  MatTableModule,
 ];
 
 @NgModule({
@@ -57,6 +61,8 @@ const MATERIAL_MODULES: any[] = [
     UserListComponent,
     UserCardComponent,
     UserProfileComponent,
+    TodoListComponent,
+    TodoTableComponent,
   ],
   imports: [
     BrowserModule,
