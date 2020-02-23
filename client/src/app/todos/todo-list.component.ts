@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from './todo.service';
 
 
 @Component({
@@ -9,6 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class TodoListComponent implements OnInit {
+  public serverFilteredUsers: User[];
+  public filteredUsers: User[];
+
+  constructor(private todoService: TodoService) {
+
+  }
+
+  // These fields are hooked up to the inputs in the html.
+  // They should be live: they'll automatically reflect changes to the contents
+  // of the page.
+  // We'll use them to filter the list of todos (either )
   public todoOwner: string;
   public todoCategory: string;
   public todoBody: string;
