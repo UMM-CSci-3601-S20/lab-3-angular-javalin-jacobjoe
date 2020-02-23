@@ -28,4 +28,17 @@ export class TodoService {
     });
   }
 
+  filterTodos(todos: Todo[], filters: {
+      owner?: string,
+      body?: string,
+      category?: string }): Todo[] {
+    let filteredTodos = todos;
+    for (const fieldName in filters) {
+      if (filters.hasOwnProperty(fieldName)) {
+        filteredTodos = filteredTodos.filter(todo =>
+          todo[fieldName].indexOf(filters[fieldName]) !== -1);
+      }
+    }
+    return filteredTodos;
+  }
 }
