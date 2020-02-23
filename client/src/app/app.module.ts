@@ -27,6 +27,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { TodoListComponent } from './todos/todo-list.component';
+import { TodoTableComponent } from './todos/todo-table.component';
 import { TodoService } from './todos/todo.service';
 import { UserCardComponent } from './users/user-card.component';
 import { UserListComponent } from './users/user-list.component';
