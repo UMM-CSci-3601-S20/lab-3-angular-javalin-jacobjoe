@@ -146,7 +146,7 @@ describe('Todo service: ', () => {
     it('filters by nonexistent category', () => {
       expect(testTodos.length).toBe(4);
       const filteredTodos = todoService.filterTodos(testTodos, { category: 'Johnny Cash songs' });
-      expect(filteredTodos.length).toBe(1);
+      expect(filteredTodos.length).toBe(0);
     });
 
     it('is case-insensitive', () => {
