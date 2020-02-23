@@ -34,6 +34,13 @@ export class TodoListComponent implements OnInit {
   }
 
   getTodosFromServer(): void {
-    // TODO
+    this.todoService.getTodos({
+      status: this.todoStatus,
+    }).subscribe(returnedUsers => {
+      this.serverFilteredUsers = returnedUsers;
+      this.updateFilter();
+    }, err => {
+      console.log(err);
+    });
   }
 }
