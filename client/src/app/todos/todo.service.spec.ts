@@ -177,5 +177,11 @@ describe('Todo service: ', () => {
       const filteredTodos = todoService.filterTodos(testTodos, { body: 'Mr. Scruffles', category: 'Chores' });
       expect(filteredTodos.length).toBe(1);
     });
+
+    it('ignores parameters whose values are undefined', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { body: undefined, category: 'Chores' });
+      expect(filteredTodos.length).toBe(3);
+    });
   });
 });
