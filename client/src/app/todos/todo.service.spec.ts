@@ -114,8 +114,51 @@ describe('Todo service: ', () => {
   describe('filterTodos: ', () => {
     it('filters by owner', () => {
       expect(testTodos.length).toBe(4);
-      const filteredTodos = todoService.filterTodos(testTodos, { owner: 'Billy'});
+      const filteredTodos = todoService.filterTodos(testTodos, { owner: 'Billy' });
       expect(filteredTodos.length).toBe(2);
+    });
+
+    it('filters by nonexistent owner', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { owner: 'Aunt Matilda' });
+      expect(filteredTodos.length).toBe(0);
+    });
+
+    it('filters by body', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { body: 'Mr. Scruffles' });
+      expect(filteredTodos.length).toBe(2);
+    });
+
+    it('filters by nonexistent body', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { body: 'martian invasion' });
+      expect(filteredTodos.length).toBe(0);
+    });
+
+    it('filters by category', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { category: 'not being such a lazy-bones' });
+      expect(filteredTodos.length).toBe(1);
+    });
+
+
+    it('filters by nonexistent category', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { category: 'Johnny Cash songs' });
+      expect(filteredTodos.length).toBe(1);
+    });
+
+    it('is case-insensitive', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { owner: 'BiLlY' });
+      expect(filteredTodos.length).toBe(2);
+    });
+
+    it('works with combinations of parameters', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { body: 'Mr. Scruffles', category: 'Chores' });
+      expect(filteredTodos.length).toBe(1);
     });
   });
 });
