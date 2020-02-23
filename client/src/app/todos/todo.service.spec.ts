@@ -109,6 +109,23 @@ describe('Todo service: ', () => {
 
       req.flush(testTodos);
     });
+
+    it('ignores parameters whose value is undefined', () => {
+      todoService.getTodos({ category: 'chores', status: undefined, owner: undefined }).subscribe(
+        todos => expect(todos).toBe(testTodos)
+      );
+      const req = httpTestingController.expectOne(
+        request => request.url.startsWith(todoService.todoUrl)
+          && request.params.has('category')
+          && !request.params.has('owner')
+          && !request.params.has('status')
+      );
+
+      expect(req.request.method).toEqual('GET');
+      expect(req.request.params.get('category')).toEqual('chores');
+
+      req.flush(testTodos);
+    });
   });
 
   describe('filterTodos: ', () => {
