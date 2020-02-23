@@ -19,7 +19,9 @@ export class TodoService {
       owner?: string }): Observable<Todo[]> {
     let httpParams: HttpParams = new HttpParams();
     for (const fieldName in filters) {
-      if (filters.hasOwnProperty(fieldName)) {
+      // When the front-end passes us filters with falsy values
+      // (like empty-string) it expects us to ignore them.
+      if (filters.hasOwnProperty(fieldName) && filters[fieldName]) {
         httpParams = httpParams.set(fieldName, filters[fieldName]);
       }
     }
@@ -34,7 +36,9 @@ export class TodoService {
       category?: string }): Todo[] {
     let filteredTodos = todos.slice();
     for (const fieldName in filters) {
-      if (filters.hasOwnProperty(fieldName)) {
+      // When the front-end passes us filters with falsy values
+      // (like empty-string) it expects us to ignore them.
+      if (filters.hasOwnProperty(fieldName) && filters[fieldName]) {
         filteredTodos = filteredTodos.filter(todo =>
           todo[fieldName].toLowerCase().indexOf(filters[fieldName].toLowerCase()) !== -1);
       }

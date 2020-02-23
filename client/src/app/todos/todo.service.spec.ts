@@ -99,13 +99,47 @@ describe('Todo service: ', () => {
       );
       const req = httpTestingController.expectOne(
         request => request.url.startsWith(todoService.todoUrl) && request.params.has('category') &&
-          request.params.has('owner') && request.params.has('category')
+          request.params.has('owner') && request.params.has('status')
       );
 
       expect(req.request.method).toEqual('GET');
       expect(req.request.params.get('category')).toEqual('chores');
       expect(req.request.params.get('owner')).toEqual('George III');
       expect(req.request.params.get('status')).toEqual('complete');
+
+      req.flush(testTodos);
+    });
+
+    it('ignores parameters whose values are undefined', () => {
+      todoService.getTodos({ category: 'chores', status: undefined, owner: undefined }).subscribe(
+        todos => expect(todos).toBe(testTodos)
+      );
+      const req = httpTestingController.expectOne(
+        request => request.url.startsWith(todoService.todoUrl)
+          && request.params.has('category')
+          && !request.params.has('owner')
+          && !request.params.has('status')
+      );
+
+      expect(req.request.method).toEqual('GET');
+      expect(req.request.params.get('category')).toEqual('chores');
+
+      req.flush(testTodos);
+    });
+
+    it('ignores parameters whose values are falsy', () => {
+      todoService.getTodos({ category: 'chores', status: '', owner: null }).subscribe(
+        todos => expect(todos).toBe(testTodos)
+      );
+      const req = httpTestingController.expectOne(
+        request => request.url.startsWith(todoService.todoUrl)
+          && request.params.has('category')
+          && !request.params.has('owner')
+          && !request.params.has('status')
+      );
+
+      expect(req.request.method).toEqual('GET');
+      expect(req.request.params.get('category')).toEqual('chores');
 
       req.flush(testTodos);
     });
@@ -159,6 +193,18 @@ describe('Todo service: ', () => {
       expect(testTodos.length).toBe(4);
       const filteredTodos = todoService.filterTodos(testTodos, { body: 'Mr. Scruffles', category: 'Chores' });
       expect(filteredTodos.length).toBe(1);
+    });
+
+    it('ignores parameters whose values are undefined', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { body: undefined, category: 'Chores' });
+      expect(filteredTodos.length).toBe(3);
+    });
+
+    it('ignores parameters whose values are falsy', () => {
+      expect(testTodos.length).toBe(4);
+      const filteredTodos = todoService.filterTodos(testTodos, { body: null, owner: '', category: 'Chores' });
+      expect(filteredTodos.length).toBe(3);
     });
   });
 });
