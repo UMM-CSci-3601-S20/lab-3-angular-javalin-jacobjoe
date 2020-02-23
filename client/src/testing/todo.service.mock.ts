@@ -14,7 +14,7 @@ export class MockTodoService extends TodoService {
     super(null);
   }
 
-  getTodo(filters?: {
+  getTodos(filters?: {
     category?: string,
     status?: string,
     body?: string,
