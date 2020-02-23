@@ -10,7 +10,7 @@ export class TodoPage {
   }
 
   getTodoTitle() {
-    return element(by.className('todos-list-title')).getText();
+    return element(by.className('todo-list-title')).getText();
   }
 
   backspace() {
