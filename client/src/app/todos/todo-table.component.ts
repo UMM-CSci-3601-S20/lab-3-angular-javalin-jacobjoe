@@ -10,6 +10,9 @@ import { Todo } from './todo';
 })
 
 export class TodoTableComponent implements OnInit {
+  columnsToDisplay = [ 'owner', 'category', 'status', 'body' ];
+
   @Input() todos: Todo[];
+
   ngOnInit(): void {}
 }
