@@ -15,6 +15,7 @@ describe('Todo list', () => {
 
   it('Should type something in the owner filter and check that it returned correct elements', () => {
     page.typeInput('todo-owner-input', 'Blanche');
+    expect(page.getTodoOwnerCells().count).toBeGreaterThan(0);
     page.getTodoOwnerCells().each(e => {
       expect(e.getText()).toEqual('Blanche');
     });
@@ -22,6 +23,7 @@ describe('Todo list', () => {
 
   it('Should type something in the category filter and check that it returned correct elements', () => {
     page.typeInput('todo-category-input', 'homework');
+    expect(page.getTodoCategoryCells().count).toBeGreaterThan(0);
     page.getTodoCategoryCells().each(e => {
       expect(e.getText()).toEqual('homework');
     });
@@ -31,6 +33,7 @@ describe('Todo list', () => {
     const longBodyText = 'Laborum incididunt nisi eiusmod aliqua velit quis occaecat excepteur ut in ad.'
       + ' Commodo adipisicing sint ipsum irure amet exercitation voluptate mollit.'
     page.typeInput('todo-body-input', longBodyText);
+    expect(page.getTodoBodyCells().count).toBeGreaterThan(0);
     page.getTodoBodyCells().each(e => {
       expect(e.getText()).toEqual(longBodyText);
     });
