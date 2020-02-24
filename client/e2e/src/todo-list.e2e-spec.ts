@@ -13,6 +13,11 @@ describe('Todo list', () => {
     expect(page.getTodoTitle()).toEqual('Todos');
   });
 
+  it('Displays all todos', () => {
+    expect(page.getTodoTableRows().count()).toEqual(300);
+  });
+
+
   describe('Using the filters: ', () => {
     it('Should type something in the owner filter and check that it returned correct elements', () => {
       page.typeInput('todo-owner-input', 'Blanche');
