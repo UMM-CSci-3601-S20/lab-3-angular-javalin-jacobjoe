@@ -24,7 +24,7 @@ export class TodoPage {
   }
 
   getTodoTableRows() {
-    return element(by.className('todo-table')).all(by.tagName('tr'));
+    return element(by.tagName('tbody')).all(by.tagName('tr'));
   }
 
   getTodoOwnerCells() {
