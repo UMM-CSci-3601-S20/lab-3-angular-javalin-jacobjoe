@@ -38,6 +38,8 @@ export class TodoListComponent implements OnInit {
     if (this.todoLimit && Number(this.todoLimit)) {
       this.limitedTodos =
         this.filteredTodos.slice(0, Number(this.todoLimit));
+    } else {
+      this.limitedTodos = this.filteredTodos;
     }
   }
 
