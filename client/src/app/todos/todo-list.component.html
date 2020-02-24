@@ -1,5 +1,10 @@
 <div fxLayout="row">
-  <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10">
+  <div
+    fxFlex
+    fxLayout="column"
+    fxLayoutGap="10px"
+    fxFlex.gt-sm="80"
+    fxFlexOffset.gt-sm="10">
 
     <mat-card class="search-card">
       <mat-card-header>
@@ -48,8 +53,8 @@
     </mat-card>
 
     <div fxLayout="row">
-      <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" *ngIf="serverFilteredTodos; else todosError" >
-        <app-todo-table [todos]="filteredTodos"></app-todo-table>
+      <div *ngIf="serverFilteredTodos; else todosError">
+        <app-todo-table class="todo-table" [todos]="filteredTodos"></app-todo-table>
       </div>
 
       <ng-template #todosError>
