@@ -41,4 +41,5 @@ export class TodoPage {
 
   getTodoBodyCells() {
     return element.all(by.className('todo-body-cell'))
+  }
 }
