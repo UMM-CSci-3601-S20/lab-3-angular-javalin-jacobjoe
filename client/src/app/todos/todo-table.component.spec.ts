@@ -26,4 +26,8 @@ describe('TodoTableComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display at least two columns', () => {
+    expect(component.columnsToDisplay.length).toBeGreaterThanOrEqual(2);
+  });
 });
