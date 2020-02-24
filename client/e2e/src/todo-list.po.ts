@@ -1,4 +1,4 @@
-import { browser, by, element, Key, ElementFinder } from 'protractor';
+import { browser, by, element, Key } from 'protractor';
 
 export class TodoPage {
   navigateTo() {
