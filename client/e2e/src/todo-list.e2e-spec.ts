@@ -38,4 +38,28 @@ describe('Todo list', () => {
       expect(e.getText()).toEqual(longBodyText);
     });
   });
+
+  it('Should type something partial in the owner filter and check that it returned correct elements', () => {
+    page.typeInput('todo-owner-input', 'ry');
+    expect(page.getTodoBodyCells().count).toBeGreaterThan(0);
+    page.getTodoOwnerCells().each(e => {
+      expect(e.getText()).toMatch(/ry/i);
+    });
+  });
+
+  it('Should type something partial in the category filter and check that it returned correct elements', () => {
+    page.typeInput('todo-category-input', 'de');
+    expect(page.getTodoBodyCells().count).toBeGreaterThan(0);
+    page.getTodoCategoryCells().each(e => {
+      expect(e.getText()).toMatch(/de/i);
+    });
+  });
+
+  it('Should type something partial in the body filter and check that it returned correct elements', () => {
+    page.typeInput('todo-category-input', 'Lorem');
+    expect(page.getTodoBodyCells().count).toBeGreaterThan(0);
+    page.getTodoBodyCells().each(e => {
+      expect(e.getText()).toMatch(/Lorem/i);
+    });
+  });
 });
