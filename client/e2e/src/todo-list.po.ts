@@ -26,4 +26,19 @@ export class TodoPage {
   getTodoTableRows() {
     return element(by.className('todo-table')).all(by.tagName('tr'));
   }
+
+  getTodoOwnerCells() {
+    return element.all(by.className('todo-owner-cell'));
+  }
+
+  getTodoCategoryCells() {
+    return element.all(by.className('todo-category-cell'));
+  }
+
+  getTodoStatusCells() {
+    return element.all(by.className('todo-status-cell'));
+  }
+
+  getTodoBodyCells() {
+    return element.all(by.className('todo-body-cell'))
 }
