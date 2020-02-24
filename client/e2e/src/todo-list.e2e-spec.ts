@@ -37,7 +37,7 @@ describe('Todo list', () => {
 
     it('Should type something in the body filter and check that it returned correct elements', () => {
       const longBodyText = 'Laborum incididunt nisi eiusmod aliqua velit quis occaecat excepteur ut in ad.'
-        + ' Commodo adipisicing sint ipsum irure amet exercitation voluptate mollit.';
+        + ' Commodo adipisicing sint ipsum irure amet exercitation voluptate mollit.'
       page.typeInput('todo-body-input', longBodyText);
       expect(page.getTodoTableRows().count()).toBeGreaterThan(0);
       page.getTodoBodyCells().each(e => {

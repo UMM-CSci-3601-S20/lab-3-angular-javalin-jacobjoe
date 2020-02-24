@@ -29,6 +29,17 @@ export class TodoListComponent implements OnInit {
   public todoStatus: 'complete' | 'incomplete';
   public todoLimit: string;
 
+  limitTodos(): void {
+    // As long as it isn't falsy
+    // And it doesn't become falsy when parsed as a number.
+    // Ex: ignore '', foo', 'NaN', '0'
+    // but accept '1', '   20 ', '54030.12', etc.
+    if (this.todoLimit && Number(this.todoLimit)) {
+      this.filteredTodos =
+        this.filteredTodos.slice(0, Number(this.todoLimit));
+    }
+  }
+
   updateFilter(): void {
     this.filteredTodos = this.todoService.filterTodos(
       this.serverFilteredTodos,
@@ -38,6 +49,8 @@ export class TodoListComponent implements OnInit {
         body: this.todoBody,
       },
     );
+
+    this.limitTodos();
   }
 
   getTodosFromServer(): void {
