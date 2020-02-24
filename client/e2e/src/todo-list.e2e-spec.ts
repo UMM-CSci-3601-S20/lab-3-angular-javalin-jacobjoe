@@ -15,7 +15,7 @@ describe('Todo list', () => {
 
   it('Should type something in the owner filter and check that it returned correct elements', () => {
     page.typeInput('todo-owner-input', 'Blanche');
-    expect(page.getTodoOwnerCells().count).toBeGreaterThan(0);
+    expect(page.getTodoOwnerCells().count()).toBeGreaterThan(0);
     page.getTodoOwnerCells().each(e => {
       expect(e.getText()).toEqual('Blanche');
     });
@@ -23,7 +23,7 @@ describe('Todo list', () => {
 
   it('Should type something in the category filter and check that it returned correct elements', () => {
     page.typeInput('todo-category-input', 'homework');
-    expect(page.getTodoCategoryCells().count).toBeGreaterThan(0);
+    expect(page.getTodoCategoryCells().count()).toBeGreaterThan(0);
     page.getTodoCategoryCells().each(e => {
       expect(e.getText()).toEqual('homework');
     });
@@ -33,7 +33,7 @@ describe('Todo list', () => {
     const longBodyText = 'Laborum incididunt nisi eiusmod aliqua velit quis occaecat excepteur ut in ad.'
       + ' Commodo adipisicing sint ipsum irure amet exercitation voluptate mollit.'
     page.typeInput('todo-body-input', longBodyText);
-    expect(page.getTodoBodyCells().count).toBeGreaterThan(0);
+    expect(page.getTodoBodyCells().count()).toBeGreaterThan(0);
     page.getTodoBodyCells().each(e => {
       expect(e.getText()).toEqual(longBodyText);
     });
@@ -41,7 +41,7 @@ describe('Todo list', () => {
 
   it('Should type something partial in the owner filter and check that it returned correct elements', () => {
     page.typeInput('todo-owner-input', 'ry');
-    expect(page.getTodoBodyCells().count).toBeGreaterThan(0);
+    expect(page.getTodoBodyCells().count()).toBeGreaterThan(0);
     page.getTodoOwnerCells().each(e => {
       expect(e.getText()).toMatch(/ry/i);
     });
@@ -49,7 +49,7 @@ describe('Todo list', () => {
 
   it('Should type something partial in the category filter and check that it returned correct elements', () => {
     page.typeInput('todo-category-input', 'de');
-    expect(page.getTodoBodyCells().count).toBeGreaterThan(0);
+    expect(page.getTodoBodyCells().count()).toBeGreaterThan(0);
     page.getTodoCategoryCells().each(e => {
       expect(e.getText()).toMatch(/de/i);
     });
@@ -57,7 +57,7 @@ describe('Todo list', () => {
 
   it('Should type something partial in the body filter and check that it returned correct elements', () => {
     page.typeInput('todo-category-input', 'Lorem');
-    expect(page.getTodoBodyCells().count).toBeGreaterThan(0);
+    expect(page.getTodoBodyCells().count()).toBeGreaterThan(0);
     page.getTodoBodyCells().each(e => {
       expect(e.getText()).toMatch(/Lorem/i);
     });
@@ -66,7 +66,7 @@ describe('Todo list', () => {
   it('Should return the correct elements for multiple filters', () => {
     page.typeInput('todo-category-input', 'Lorem');
     page.typeInput('todo-category-input', 'Workman');
-    expect(page.getTodoBodyCells().count).toBeGreaterThan(0);
+    expect(page.getTodoBodyCells().count()).toBeGreaterThan(0);
     page.getTodoBodyCells().each(e => {
       expect(e.getText()).toMatch(/Lorem/i);
     });
