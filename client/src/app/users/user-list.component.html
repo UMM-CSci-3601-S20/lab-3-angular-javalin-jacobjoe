@@ -65,7 +65,6 @@
   <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" *ngIf="serverFilteredUsers; else usersError" >
     <!-- Switch between card and list view based on the viewType variable, set above in the mar-radio-group -->
     <div [ngSwitch]="viewType">
-      todos-list-title
       <!-- Card grid view -->
       <div *ngSwitchCase="'card'" fxLayout="row wrap" fxLayoutGap="10px" class="user-cards-container">
         <app-user-card simple="true" *ngFor="let user of filteredUsers" class="user-card" [user]="user" fxFlex="1 1 280px"></app-user-card>
@@ -90,13 +89,13 @@
 
   <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
   <ng-template #usersError>
-    <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-todos-list-titlem="10" class="user-error">
+    <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" class="user-error">
       <mat-error>
-        There was a problem loading the users. Postodos-list-titleibly the server is down or perhaps there are network
+        There was a problem loading the users. Possibly the server is down or perhaps there are network
         issues.
       </mat-error>
       <mat-error>
-        Please wait a bit and try again or start ttodos-list-titlee server.
+        Please wait a bit and try again or start the server.
       </mat-error>
     </div>
   </ng-template>
