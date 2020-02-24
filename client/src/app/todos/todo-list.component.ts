@@ -13,6 +13,7 @@ import { Todo } from './todo';
 export class TodoListComponent implements OnInit {
   public serverFilteredTodos: Todo[];
   public filteredTodos: Todo[];
+  public limitedTodos: Todo[];
 
   constructor(private todoService: TodoService) {
 
@@ -35,7 +36,7 @@ export class TodoListComponent implements OnInit {
     // Ex: ignore '', foo', 'NaN', '0'
     // but accept '1', '   20 ', '54030.12', etc.
     if (this.todoLimit && Number(this.todoLimit)) {
-      this.filteredTodos =
+      this.limitedTodos =
         this.filteredTodos.slice(0, Number(this.todoLimit));
     }
   }
