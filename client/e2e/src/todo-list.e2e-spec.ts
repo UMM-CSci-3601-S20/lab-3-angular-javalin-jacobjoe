@@ -62,4 +62,16 @@ describe('Todo list', () => {
       expect(e.getText()).toMatch(/Lorem/i);
     });
   });
+
+  it('Should return the correct elements for multiple filters', () => {
+    page.typeInput('todo-category-input', 'Lorem');
+    page.typeInput('todo-category-input', 'Workman');
+    expect(page.getTodoBodyCells().count).toBeGreaterThan(0);
+    page.getTodoBodyCells().each(e => {
+      expect(e.getText()).toMatch(/Lorem/i);
+    });
+    page.getTodoOwnerCells().each(e => {
+      expect(e.getText()).toMatch(/Workman/i);
+    });
+  });
 });
