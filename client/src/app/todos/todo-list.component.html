@@ -54,7 +54,23 @@
 
     <div fxLayout="row">
       <div *ngIf="serverFilteredTodos; else todosError">
-        <app-todo-table class="todo-table" [todos]="filteredTodos"></app-todo-table>
+        <mat-card class="table-card" fxLayout="column">
+
+          <mat-form-field class="input-field limit-select-form-field">
+            <mat-label>Amount Displayed</mat-label>
+            <mat-select (selectionChange)="limitTodos()" [(ngModel)]="todoLimit" id="limit-select">
+              <mat-option>--</mat-option>
+              <mat-option value="10">10</mat-option>
+              <mat-option value="20">20</mat-option>
+              <mat-option value="100">100</mat-option>
+              <mat-option value="500">500</mat-option>
+            </mat-select>
+            <mat-hint>Filtered on the client</mat-hint>
+          </mat-form-field>
+
+          <app-todo-table class="todo-table" [todos]="limitedTodos"></app-todo-table>
+
+        </mat-card>
       </div>
 
       <ng-template #todosError>
