@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatTableModule } from '@angular/material/table';
 import { TodoTableComponent } from './todo-table.component';
+import { testTodos } from 'src/testing/test-todos';
 
 describe('TodoTableComponent', () => {
   let component: TodoTableComponent;
@@ -20,6 +21,7 @@ describe('TodoTableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoTableComponent);
     component = fixture.componentInstance;
+    component.todos = testTodos;
     fixture.detectChanges();
   });
 
