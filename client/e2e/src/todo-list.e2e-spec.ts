@@ -56,7 +56,7 @@ describe('Todo list', () => {
   });
 
   it('Should type something partial in the body filter and check that it returned correct elements', () => {
-    page.typeInput('todo-category-input', 'Lorem');
+    page.typeInput('todo-body-input', 'Lorem');
     expect(page.getTodoBodyCells().count()).toBeGreaterThan(0);
     page.getTodoBodyCells().each(e => {
       expect(e.getText()).toMatch(/Lorem/i);
@@ -64,8 +64,8 @@ describe('Todo list', () => {
   });
 
   it('Should return the correct elements for multiple filters', () => {
-    page.typeInput('todo-category-input', 'Lorem');
-    page.typeInput('todo-category-input', 'Workman');
+    page.typeInput('todo-body-input', 'Lorem');
+    page.typeInput('todo-owner-input', 'Workman');
     expect(page.getTodoBodyCells().count()).toBeGreaterThan(0);
     page.getTodoBodyCells().each(e => {
       expect(e.getText()).toMatch(/Lorem/i);
