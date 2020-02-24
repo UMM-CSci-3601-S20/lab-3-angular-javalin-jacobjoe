@@ -21,11 +21,13 @@ export class TodoListComponent implements OnInit {
   // These fields are hooked up to the inputs in the html.
   // They should be live: they'll automatically reflect changes to the contents
   // of the page.
-  // We'll use them to filter the list of todos (either )
+  // We'll use them to filter the list of todos (either on the client or the
+  // server)
   public todoOwner: string;
   public todoCategory: string;
   public todoBody: string;
   public todoStatus: 'complete' | 'incomplete';
+  public todoLimit: string;
 
   updateFilter(): void {
     this.filteredTodos = this.todoService.filterTodos(
