@@ -49,7 +49,7 @@
 
     <div fxLayout="row">
       <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" *ngIf="serverFilteredTodos; else todosError" >
-        <app-todo-table class="todo-table" [todos]="filteredTodos"></app-todo-table>
+        <app-todo-table [todos]="filteredTodos"></app-todo-table>
       </div>
 
       <ng-template #todosError>
