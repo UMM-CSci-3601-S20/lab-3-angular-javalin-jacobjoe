@@ -75,5 +75,31 @@ describe('Todo list', () => {
         expect(e.getText()).toMatch(/Workman/i);
       });
     });
+
+    describe('The status selecter: ', () => {
+      it('Should select a status check that it returned correct elements', () => {
+        page.selectMatSelectValue('todo-status-select', 'complete');
+        expect(page.getTodoTableRows().count()).toBeGreaterThan(0);
+        page.getTodoStatusCells().each(e => {
+          expect(e.getText()).toMatch('Complete');
+        });
+      });
+
+      it('Should make sure that status works with the other fields', () => {
+        page.selectMatSelectValue('todo-status-select', 'complete');
+        page.typeInput('todo-body-input', 'Lorem');
+        page.typeInput('todo-owner-input', 'Workman');
+        expect(page.getTodoTableRows().count()).toBeGreaterThan(0);
+        page.getTodoStatusCells().each(e => {
+          expect(e.getText()).toMatch('Complete');
+        });
+        page.getTodoBodyCells().each(e => {
+          expect(e.getText()).toMatch(/Lorem/i);
+        });
+        page.getTodoOwnerCells().each(e => {
+          expect(e.getText()).toMatch(/Workman/i);
+        });
+      });
+    });
   });
 });

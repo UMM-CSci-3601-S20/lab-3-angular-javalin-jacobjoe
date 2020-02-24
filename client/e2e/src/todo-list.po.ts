@@ -42,4 +42,11 @@ export class TodoPage {
   getTodoBodyCells() {
     return element.all(by.className('todo-body-cell'))
   }
+
+  selectMatSelectValue(selectID: string, value: string) {
+    const sel = element(by.id(selectID));
+    return sel.click().then(() => {
+      return element(by.css('mat-option[value="' + value + '"]')).click();
+    });
+  }
 }
