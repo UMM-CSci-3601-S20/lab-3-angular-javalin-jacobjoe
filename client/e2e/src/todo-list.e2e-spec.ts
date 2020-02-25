@@ -1,4 +1,4 @@
-import { browser, protractor, by, element } from 'protractor';
+import { browser, protractor, by, element, ElementArrayFinder, ElementFinder } from 'protractor';
 import { TodoPage } from './todo-list.po';
 
 describe('Todo list', () => {
@@ -148,6 +148,102 @@ describe('Todo list', () => {
       expect(page.getTodoTableRows().count()).toBeGreaterThan(0);
       expect(page.getTodoTableRows().count()).toBeLessThanOrEqual(100);
     });
+  });
 
+  describe('The sortable table header: ', () => {
+    it('sorts ascending by owner', () => {
+      // This test takes too long if we don't limit the number of todos.
+      page.selectMatSelectValue('limit-select', '20');
+      page.clickHeaderCell('todo-owner-header');
+      expect(isSortedAscending(page.getTodoOwnerCells(), cell => cell.getText(), 20)).toBeTruthy();
+    });
+
+    it('sorts descending by owner', () => {
+      page.selectMatSelectValue('limit-select', '20');
+      page.clickHeaderCell('todo-owner-header');
+      page.clickHeaderCell('todo-owner-header');
+      expect(isSortedDescending(page.getTodoOwnerCells(), cell => cell.getText(), 20)).toBeTruthy();
+    });
+
+    it('sorts ascending by category', () => {
+      page.selectMatSelectValue('limit-select', '20');
+      page.clickHeaderCell('todo-category-header');
+      expect(isSortedAscending(page.getTodoCategoryCells(), cell => cell.getText(), 20)).toBeTruthy();
+    });
+
+    it('sorts descending by category', () => {
+      page.selectMatSelectValue('limit-select', '20');
+      page.clickHeaderCell('todo-category-header');
+      page.clickHeaderCell('todo-category-header');
+      expect(isSortedDescending(page.getTodoCategoryCells(), cell => cell.getText(), 20)).toBeTruthy();
+    });
+
+    it('sorts ascending by status', () => {
+      page.selectMatSelectValue('limit-select', '20');
+      page.clickHeaderCell('todo-status-header');
+      expect(
+        isSortedAscending(
+          page.getTodoStatusCells(),
+          cell => cell.getText().then(text => text === 'Complete'),
+          20,
+        )
+      ).toBeTruthy();
+    });
+
+    it('sorts descending by status', () => {
+      page.selectMatSelectValue('limit-select', '20');
+      page.clickHeaderCell('todo-status-header');
+      page.clickHeaderCell('todo-status-header');
+      expect(
+        isSortedDescending(
+          page.getTodoStatusCells(),
+          cell => cell.getText().then(text => text === 'Complete'),
+          20,
+        )
+      ).toBeTruthy();
+    });
+
+    it('sorts ascending by body', () => {
+      page.selectMatSelectValue('limit-select', '20');
+      page.clickHeaderCell('todo-body-header');
+      expect(isSortedAscending(page.getTodoBodyCells(), cell => cell.getText().then(text => text === 'Complete'), 20)).toBeTruthy();
+    });
+
+    it('sorts descending by body', () => {
+      page.selectMatSelectValue('limit-select', '20');
+      page.clickHeaderCell('todo-body-header');
+      page.clickHeaderCell('todo-body-header');
+      expect(isSortedDescending(page.getTodoBodyCells(), cell => cell.getText(), 20)).toBeTruthy();
+    });
   });
 });
+
+function isSortedAscending(
+    elementArrayFinder: ElementArrayFinder,
+    keyToSortBy: (elementFinder: ElementFinder) => any,
+    lengthOfElementArrayFinder: number): boolean {
+  for (let i = 0; i < lengthOfElementArrayFinder - 1; i++) {
+    const previousElement = elementArrayFinder.get(i);
+    const nextElement = elementArrayFinder.get(i + 1);
+
+    if (keyToSortBy(previousElement) > keyToSortBy(nextElement)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function isSortedDescending(
+    elementArrayFinder: ElementArrayFinder,
+    keyToSortBy: (elementFinder: ElementFinder) => any,
+    lengthOfElementArrayFinder: number): boolean {
+  for (let i = 0; i < lengthOfElementArrayFinder - 1; i++) {
+    const previousElement = elementArrayFinder.get(i);
+    const nextElement = elementArrayFinder.get(i + 1);
+
+    if (keyToSortBy(previousElement) > keyToSortBy(nextElement)) {
+      return false;
+    }
+  }
+  return true;
+}

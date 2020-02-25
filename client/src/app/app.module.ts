@@ -13,6 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -52,6 +53,7 @@ const MATERIAL_MODULES: any[] = [
   MatDividerModule,
   MatRadioModule,
   MatTableModule,
+  MatSortModule,
 ];
 
 @NgModule({
