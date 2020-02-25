@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { Todo } from './todo';
+import { MatTable } from '@angular/material/table';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Todo } from './todo';
 export class TodoTableComponent implements OnInit {
 
   @Input() todos: Todo[];
-
+  @ViewChild('todoTable') todoTable;
 
   constructor() {
   }
@@ -35,8 +36,7 @@ export class TodoTableComponent implements OnInit {
       switch (sort.active) {
         case 'owner': return compare(a.owner, b.owner, isAsc);
         case 'category': return compare(a.category, b.category, isAsc);
-        // not working for boolean comparison yet.
-        // case 'status' : return compare(a.status, b.status, isAsc);
+        case 'status' : return compare(Number(a.status), Number(b.status), isAsc);
         case 'body': return compare(a.body, b.body, isAsc);
         default: return 0;
       }
@@ -47,6 +47,17 @@ export class TodoTableComponent implements OnInit {
 
   sortData(sort: Sort): void {
     this.currentSortingScheme = sort;
+    // We need to call sortedData once to 'flush' the new
+    // sorting scheme.
+
+    // If we don't call sortedData once ourselves, renderRows seems like
+    // it will try to used a cached version of sortedData. (Or maybe it's
+    // calling sortedData but refusing to repaint the screen? I don't
+    // know what sort of voodoo renderRows is doing under the hood. All I
+    // know is that we need to call the method to alert renderRows that
+    // stuff has changed.)
+    const ignored = this.sortedData();
+    this.todoTable.renderRows();
   }
 }
 function compare(a: number | string, b: number | string, isAsc: boolean) {
