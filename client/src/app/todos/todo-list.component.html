@@ -53,11 +53,12 @@
     </mat-card>
 
     <div fxLayout="row">
-      <div *ngIf="serverFilteredTodos; else todosError">
-        <app-todo-table class="todo-table" [todos]="filteredTodos"></app-todo-table>
-      </div>
 
-      <ng-template #todosError>
+      <mat-card [hidden]="!serverFilteredTodos">
+        <app-todo-table class="todo-table" [todos]="filteredTodos"></app-todo-table>
+      </mat-card>
+
+      <mat-card [hidden]="serverFilteredTodos">
         <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" class="todos-error">
           <mat-error>
             There was a problem loading the todos. Possibly the server is down or perhaps there are network
@@ -67,7 +68,7 @@
             Please wait a bit and try again or start the server.
           </mat-error>
         </div>
-      </ng-template>
+      </mat-card>
 
     </div>
 
