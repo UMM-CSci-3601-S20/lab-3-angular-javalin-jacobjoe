@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { Todo } from './todo';
-import { MatTable } from '@angular/material/table';
 
 
 @Component({
@@ -56,7 +55,7 @@ export class TodoTableComponent implements OnInit {
     // know what sort of voodoo renderRows is doing under the hood. All I
     // know is that we need to call the method to alert renderRows that
     // stuff has changed.)
-    const ignored = this.sortedData();
+    this.sortedData();
     this.todoTable.renderRows();
   }
 }
