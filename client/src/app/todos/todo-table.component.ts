@@ -13,15 +13,17 @@ import { Todo } from './todo';
 export class TodoTableComponent implements OnInit {
 
   sortedData: Todo[];
-  constructor() {
-    this.sortedData = this.todos.slice();
-  }
-  columnsToDisplay = [ 'owner', 'category', 'status', 'body' ];
-
   @Input() todos: Todo[];
 
 
-  ngOnInit(): void {}
+  constructor() {
+  }
+  columnsToDisplay = [ 'owner', 'category', 'status', 'body' ];
+
+  ngOnInit(): void {
+    this.sortedData = this.todos.slice();
+  }
+
 
   sortData(sort: Sort) {
     const data = this.todos.slice();

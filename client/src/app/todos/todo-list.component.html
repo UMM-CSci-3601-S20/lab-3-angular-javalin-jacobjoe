@@ -55,21 +55,21 @@
     <div fxLayout="row">
       <mat-card [hidden]="!serverFilteredTodos">
 
-          <mat-form-field class="input-field limit-select-form-field">
-            <mat-select (selectionChange)="limitTodos()" [(ngModel)]="todoLimit" id="limit-select">
-            <mat-label>Amount Displayed</mat-label>
-              <mat-option>--</mat-option>
-              <mat-option value="10">10</mat-option>
-              <mat-option value="20">20</mat-option>
-              <mat-option value="100">100</mat-option>
-            </mat-select>
-              <mat-option value="500">500</mat-option>
-            <mat-hint>Filtered on the client</mat-hint>
-          </mat-form-field>
+        <mat-form-field class="input-field limit-select-form-field">
+          <mat-label>Amount Displayed</mat-label>
+          <mat-select (selectionChange)="limitTodos()" [(ngModel)]="todoLimit" id="limit-select">
+            <mat-option>--</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="20">20</mat-option>
+            <mat-option value="100">100</mat-option>
+            <mat-option value="500">500</mat-option>
+          </mat-select>
+          <mat-hint>Filtered on the client</mat-hint>
+        </mat-form-field>
 
-          <app-todo-table class="todo-table" [todos]="limitedTodos"></app-todo-table>
+        <app-todo-table class="todo-table" [todos]="limitedTodos"></app-todo-table>
 
-        </mat-card>
+      </mat-card>
 
       <mat-card [hidden]="serverFilteredTodos">
         <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" class="todos-error">
