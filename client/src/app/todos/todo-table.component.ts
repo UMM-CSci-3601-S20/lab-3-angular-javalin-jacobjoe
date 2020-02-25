@@ -12,37 +12,41 @@ import { Todo } from './todo';
 
 export class TodoTableComponent implements OnInit {
 
-  sortedData: Todo[];
   @Input() todos: Todo[];
 
 
   constructor() {
   }
   columnsToDisplay = [ 'owner', 'category', 'status', 'body' ];
+  currentSortingScheme: Sort = { active: '', direction: '' };
 
   ngOnInit(): void {
-    this.sortedData = this.todos.slice();
   }
 
 
-  sortData(sort: Sort) {
-    const data = this.todos.slice();
+  sortedData(): Todo[] {
+    const sort = this.currentSortingScheme;
     if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
+      return this.todos;
     }
 
-    this.sortedData = data.sort((a, b) => {
-    const isAsc = sort.direction === 'asc';
-    switch (sort.active) {
-      case 'owner' : return compare(a.owner, b.owner, isAsc);
-      case 'category' : return compare(a.category, b.category, isAsc);
-      // not working for boolean comparison yet.
-      // case 'status' : return compare(a.status, b.status, isAsc);
-      case 'body' : return compare(a.body, b.body, isAsc);
-      default: return 0;
-    }
-   });
+    const sortedData = this.todos.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'owner': return compare(a.owner, b.owner, isAsc);
+        case 'category': return compare(a.category, b.category, isAsc);
+        // not working for boolean comparison yet.
+        // case 'status' : return compare(a.status, b.status, isAsc);
+        case 'body': return compare(a.body, b.body, isAsc);
+        default: return 0;
+      }
+    });
+
+    return sortedData;
+  }
+
+  sortData(sort: Sort): void {
+    this.currentSortingScheme = sort;
   }
 }
 function compare(a: number | string, b: number | string, isAsc: boolean) {

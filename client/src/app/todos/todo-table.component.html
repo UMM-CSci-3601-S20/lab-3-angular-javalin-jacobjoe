@@ -1,7 +1,7 @@
 <table
   mat-table
   class="todo-table"
-  [dataSource]="sortedData"
+  [dataSource]="sortedData()"
   matSort
   (matSortChange)="sortData($event)">
 
