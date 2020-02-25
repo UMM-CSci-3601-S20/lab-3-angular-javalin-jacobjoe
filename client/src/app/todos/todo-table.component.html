@@ -1,28 +1,33 @@
-<table mat-table class="todo-table" [dataSource]="todos">
+<table
+  mat-table
+  class="todo-table"
+  [dataSource]="sortedData"
+  matSort
+  (matSortChange)="sortData($event)">
 
   <ng-container matColumnDef="owner">
-    <th mat-header-cell *matHeaderCellDef> Owner </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="owner"> Owner </th>
     <td mat-cell class="todo-owner-cell" *matCellDef="let todo">
       {{todo.owner}}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef> Category </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="category"> Category </th>
     <td mat-cell class="todo-category-cell" *matCellDef="let todo">
       {{todo.category}}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="status"> Status </th>
     <td mat-cell class="todo-status-cell" *matCellDef="let todo">
       {{todo.status ? 'Complete' : 'Incomplete'}}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="body">
-    <th mat-header-cell *matHeaderCellDef> Body </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="body"> Body </th>
     <td mat-cell class="todo-body-cell" *matCellDef="let todo">
       {{todo.body}}
     </td>
@@ -30,19 +35,4 @@
 
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let todo; columns: columnsToDisplay"></tr>
-
-  <table matSort (matSortChange)="sortData($event)">
-    <tr>
-      <th mat-sort-header="owner">Todo (100g)</th>
-      <th mat-sort-header="category">Category</th>
-      <!-- sorting by status isn't up yet <th mat-sort-header="status">Status (g)</th>-->
-      <th mat-sort-header="body">Body (g)</th>
-    </tr>
-
-    <tr *ngFor="let todo of sortedData">
-      <td>{{todo.owner}}</td>
-      <td>{{todo.category}}</td>
-      <td>{{todo.body}}</td>
-    </tr>
-  </table>
 </table>
