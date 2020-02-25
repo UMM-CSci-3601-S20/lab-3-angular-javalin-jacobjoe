@@ -43,6 +43,11 @@ export class TodoPage {
     return element.all(by.className('todo-body-cell'))
   }
 
+  clickHeaderCell(headerCellID: string) {
+    const headerCell = element(by.id(headerCellID));
+    headerCell.click();
+  }
+
   selectMatSelectValue(selectID: string, value: string) {
     const sel = element(by.id(selectID));
     return sel.click().then(() => {
