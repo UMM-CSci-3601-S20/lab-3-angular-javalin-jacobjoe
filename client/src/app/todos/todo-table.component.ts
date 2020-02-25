@@ -30,9 +30,9 @@ export class TodoTableComponent implements OnInit {
       return;
     }
 
-    this.sortData = data.sort((a, b) => {
+    this.sortedData = data.sort((a, b) => {
     const isAsc = sort.direction === 'asc';
-    switch (sortData.active) {
+    switch (sort.active) {
       case 'owner' : return compare(a.owner, b.owner, isAsc);
       case 'category' : return compare(a.category, b.category, isAsc);
       // not working for boolean comparison yet.
